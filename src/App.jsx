@@ -69,11 +69,13 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer / Contact */}
+      {/* Footer / Contact (유월 님의 진짜 정보 적용 완료!) */}
       <footer className="bg-gray-900 text-white py-12 text-center">
         <h2 className="text-2xl font-bold mb-4">Contact</h2>
-        <p className="mb-2 text-gray-300">Email: your@email.com</p>
-        <p className="mb-6 text-gray-300">GitHub: https://github.com/yourname</p>
+        <p className="mb-2 text-gray-300">Email: kimyvwol@naver.com</p>
+        <p className="mb-6 text-gray-300">
+          GitHub: <a href="https://github.com/kimyvwol-beep" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">https://github.com/kimyvwol-beep</a>
+        </p>
         <p className="text-sm text-gray-500">© 2026 김유월. All rights reserved.</p>
       </footer>
     </div>
