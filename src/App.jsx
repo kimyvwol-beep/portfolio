@@ -1,5 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
 
+// ==========================================
+// 1. 메인 홈 화면 컴포넌트
+// ==========================================
 function Home() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
@@ -77,10 +80,9 @@ function Home() {
   );
 }
 
-function ProjectDetail() {
-  // 상세 페이지 컴포넌트 (김유월 님의 진짜 프로젝트 경험 채우기)
-import { useParams } from "react-router-dom";
-
+// ==========================================
+// 2. 프로젝트 상세 화면 컴포넌트
+// ==========================================
 function ProjectDetail() {
   const { id } = useParams();
 
@@ -102,13 +104,13 @@ function ProjectDetail() {
     description: "웹소켓 양방향 통신을 활용하여 사용자들이 별도의 새로고침 없이 실시간으로 메시지를 주고받을 수 있는 채팅 서비스입니다.",
     tags: ["React", "Tailwind CSS", "WebSocket"],
     trouble: {
-      problem: "여러 사용자가 동시에 채팅방에 입장했을 때, 이전 채팅 내역이 꼬이거나 화면 스롤이 맨 위에 멈춰있어 최신 메시지를 바로 확인하기 불편한 UI 정보 오류가 있었습니다.",
+      problem: "여러 사용자가 동시에 채팅방에 입장했을 때, 이전 채팅 내역이 꼬이거나 화면 스크롤이 맨 위에 멈춰있어 최신 메시지를 바로 확인하기 불편한 UI 정보 오류가 있었습니다.",
       solved: "React의 useRef와 useEffect 훅을 조합하여 새로운 메시지가 수신될 때마다 채팅창의 스크롤 위치가 자동으로 가장 아래로 부드럽게 내려가도록(scrollIntoView) 구현했습니다.",
       result: "다중 접속 환경에서도 끊김 없는 실시간 채팅 경험을 제공했으며, 사용자 만족도를 높이는 UI 개선을 이루어냈습니다."
     }
   };
 
-  // 어떤 프로젝트인지 판별
+  // 어떤 프로젝트인지 판별 (1이면 쇼핑몰, 아니면 채팅앱)
   const project = id === "1" ? project1 : project2;
 
   return (
@@ -161,8 +163,10 @@ function ProjectDetail() {
     </div>
   );
 }
-}
 
+// ==========================================
+// 3. 전체 앱 라우터 설정 및 내보내기
+// ==========================================
 export default function App() {
   return (
     <Router>
