@@ -78,15 +78,89 @@ function Home() {
 }
 
 function ProjectDetail() {
+  // 상세 페이지 컴포넌트 (김유월 님의 진짜 프로젝트 경험 채우기)
+import { useParams } from "react-router-dom";
+
+function ProjectDetail() {
+  const { id } = useParams();
+
+  // 1번 쇼핑몰 프로젝트 데이터
+  const project1 = {
+    title: "리액트 기반 오픈마켓 쇼핑몰",
+    description: "React와 상태 관리를 활용하여 대량의 상품 데이터를 효율적으로 렌더링하고 장바구니 기능을 구현한 웹 서비스입니다.",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    trouble: {
+      problem: "상품 리스트 페이지에서 이미지가 수십 개씩 한 번에 로딩되면서 초기 로딩 속도가 느려지고 화면이 끊기는 현상이 발생했습니다.",
+      solved: "Intersection Observer API를 활용한 '이미지 지연 로딩(Lazy Loading)' 기술을 도입했습니다. 사용자의 화면에 이미지가 보이기 직전에만 로딩되도록 구조를 변경했습니다.",
+      result: "초기 페이지 로딩 속도를 기존 대비 약 45% 개선하였고, 불필요한 네트워크 리소스를 절약하는 성과를 거두었습니다."
+    }
+  };
+
+  // 2번 채팅 앱 프로젝트 데이터
+  const project2 = {
+    title: "WebSocket 실시간 멀티 채팅 애플리케이션",
+    description: "웹소켓 양방향 통신을 활용하여 사용자들이 별도의 새로고침 없이 실시간으로 메시지를 주고받을 수 있는 채팅 서비스입니다.",
+    tags: ["React", "Tailwind CSS", "WebSocket"],
+    trouble: {
+      problem: "여러 사용자가 동시에 채팅방에 입장했을 때, 이전 채팅 내역이 꼬이거나 화면 스롤이 맨 위에 멈춰있어 최신 메시지를 바로 확인하기 불편한 UI 정보 오류가 있었습니다.",
+      solved: "React의 useRef와 useEffect 훅을 조합하여 새로운 메시지가 수신될 때마다 채팅창의 스크롤 위치가 자동으로 가장 아래로 부드럽게 내려가도록(scrollIntoView) 구현했습니다.",
+      result: "다중 접속 환경에서도 끊김 없는 실시간 채팅 경험을 제공했으며, 사용자 만족도를 높이는 UI 개선을 이루어냈습니다."
+    }
+  };
+
+  // 어떤 프로젝트인지 판별
+  const project = id === "1" ? project1 : project2;
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
-      <h1 className="text-4xl font-bold mb-4">프로젝트 상세 페이지</h1>
-      <p className="text-lg text-gray-600 mb-8">여기에 "문제 &rarr; 해결 &rarr; 결과"를 작성하게 됩니다.</p>
-      <Link to="/" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-        &larr; 홈으로 돌아가기
-      </Link>
+    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans py-16 px-4">
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
+        {/* 뒤로가기 버튼 */}
+        <Link to="/" className="inline-flex items-center text-blue-600 hover:underline mb-8 font-medium">
+          &larr; 포트폴리오 메인으로 돌아가기
+        </Link>
+
+        {/* 프로젝트 타이틀 */}
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">{project.title}</h1>
+        
+        {/* 기술 태그 */}
+        <div className="flex gap-2 mb-6">
+          {project.tags.map(tag => (
+            <span key={tag} className="px-3 py-1 bg-gray-100 text-sm font-medium rounded-md text-gray-600">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* 프로젝트 설명 */}
+        <p className="text-lg text-gray-700 leading-relaxed mb-10 pb-8 border-b border-gray-100">
+          {project.description}
+        </p>
+
+        {/* 핵심: 트러블 슈팅 섹션 */}
+        <div className="space-y-8">
+          <h2 className="text-2xl font-bold text-gray-900 border-l-4 border-blue-600 pl-3">
+            핵심 문제 해결 경험 (Trouble Shooting)
+          </h2>
+
+          <div className="bg-red-50 rounded-xl p-6 border border-red-100">
+            <h3 className="text-lg font-bold text-red-800 mb-2">🚨 직면한 문제 (Problem)</h3>
+            <p className="text-gray-700 leading-relaxed">{project.trouble.problem}</p>
+          </div>
+
+          <div className="bg-green-50 rounded-xl p-6 border border-green-100">
+            <h3 className="text-lg font-bold text-green-800 mb-2">💡 해결 방안 (Solved)</h3>
+            <p className="text-gray-700 leading-relaxed">{project.trouble.solved}</p>
+          </div>
+
+          <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
+            <h3 className="text-lg font-bold text-blue-800 mb-2">✨ 결과 및 성과 (Result)</h3>
+            <p className="text-gray-700 leading-relaxed">{project.trouble.result}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
+}
 }
 
 export default function App() {
