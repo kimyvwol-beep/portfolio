@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // HTML 태그 다크모드 강제 적용
+  // HTML 태그 다크모드 강제 적용 및 배경색 고정
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -14,7 +14,7 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // 스크롤 애니메이션 훅
+  // 스크롤 애니메이션 훅 (블러 + 페이드인)
   const useScrollAnimation = () => {
     const elementRef = useRef(null);
     useEffect(() => {
@@ -42,7 +42,6 @@ export default function App() {
   const block3Ref = useScrollAnimation();
   const block4Ref = useScrollAnimation();
   
-  // 프로젝트 섹션용 애니메이션
   const projTitleRef = useScrollAnimation();
   const proj1Ref = useScrollAnimation();
   const proj2Ref = useScrollAnimation();
@@ -175,7 +174,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. 새로 추가된 핵심 프로젝트 섹션! */}
+      {/* 4. 프로젝트 섹션 (진짜 링크 연결 완료!) */}
       <section className="relative z-10 py-24 px-6 max-w-5xl mx-auto border-t border-gray-200/50 dark:border-gray-800/50 mt-12">
         <div ref={projTitleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
           <h2 className="text-xs font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-3">Featured Projects</h2>
@@ -184,7 +183,7 @@ export default function App() {
 
         <div className="space-y-12">
           
-          {/* 프로젝트 1: CineLog */}
+          {/* 프로젝트 1: CineLog (링크 연결됨) */}
           <div ref={proj1Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-purple-300 dark:hover:border-purple-500/50 hover:shadow-xl">
             <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center overflow-hidden shadow-inner relative">
               <span className="text-white/80 font-black text-2xl tracking-widest z-10">CineLog</span>
@@ -200,17 +199,23 @@ export default function App() {
               <h3 className="text-2xl md:text-3xl font-black mb-4">트렌딩 영화 탐색 서비스, CineLog</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
                 외부 영화 API(TMDB)를 연동하여 실시간으로 유행하는 영화 데이터를 불러오고 검색할 수 있는 웹 서비스입니다. 
-                비동기 통신 시 사용자가 지루함을 느끼지 않도록 스켈레톤 UI를 적용하였으며, 최적화를 위해 디바운싱(Debouncing) 검색을 구현했습니다.
+                비동기 통신 시 사용자가 지루함을 느끼지 않도록 스켈레톤 UI를 적용했습니다.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md">
+                {/* 🚨 CineLog 진짜 링크 적용! */}
+                <a 
+                  href="https://github.com/kimyvwol-beep/cinelog" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                >
                   GitHub Code &rarr;
                 </a>
               </div>
             </div>
           </div>
 
-          {/* 프로젝트 2: TaskFlow */}
+          {/* 프로젝트 2: TaskFlow (링크 연결됨) */}
           <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-xl">
             <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center overflow-hidden shadow-inner relative">
               <span className="text-white/80 font-black text-2xl tracking-widest z-10">TaskFlow</span>
@@ -224,11 +229,17 @@ export default function App() {
               </div>
               <h3 className="text-2xl md:text-3xl font-black mb-4">칸반보드 일정 관리 앱, TaskFlow</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
-                할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 관리할 수 있는 트렐로(Trello) 스타일의 웹 애플리케이션입니다. 
-                React의 복잡한 배열/객체 상태 관리를 경험했으며, 브라우저의 로컬 스토리지를 활용해 새로고침 시에도 데이터가 유지되도록 설계했습니다.
+                할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 관리할 수 있는 일정 관리 앱입니다. 
+                로컬 스토리지를 활용해 새로고침 시에도 데이터가 유지되도록 설계했습니다.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md">
+                {/* 🚨 TaskFlow 진짜 링크 적용! */}
+                <a 
+                  href="https://github.com/kimyvwol-beep/taskflow" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                >
                   GitHub Code &rarr;
                 </a>
               </div>
