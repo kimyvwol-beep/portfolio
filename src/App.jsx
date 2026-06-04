@@ -174,7 +174,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. 프로젝트 섹션 (진짜 링크 연결 완료!) */}
+      {/* 4. 프로젝트 섹션 */}
       <section className="relative z-10 py-24 px-6 max-w-5xl mx-auto border-t border-gray-200/50 dark:border-gray-800/50 mt-12">
         <div ref={projTitleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
           <h2 className="text-xs font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-3">Featured Projects</h2>
@@ -183,7 +183,7 @@ export default function App() {
 
         <div className="space-y-12">
           
-          {/* 프로젝트 1: CineLog (링크 연결됨) */}
+          {/* 프로젝트 1: CineLog */}
           <div ref={proj1Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-purple-300 dark:hover:border-purple-500/50 hover:shadow-xl">
             <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center overflow-hidden shadow-inner relative">
               <span className="text-white/80 font-black text-2xl tracking-widest z-10">CineLog</span>
@@ -202,7 +202,6 @@ export default function App() {
                 비동기 통신 시 사용자가 지루함을 느끼지 않도록 스켈레톤 UI를 적용했습니다.
               </p>
               <div className="flex gap-4">
-                {/* 🚨 CineLog 진짜 링크 적용! */}
                 <a 
                   href="https://github.com/kimyvwol-beep/cinelog" 
                   target="_blank" 
@@ -215,7 +214,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 프로젝트 2: TaskFlow (링크 연결됨) */}
+          {/* 프로젝트 2: TaskFlow */}
           <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-xl">
             <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center overflow-hidden shadow-inner relative">
               <span className="text-white/80 font-black text-2xl tracking-widest z-10">TaskFlow</span>
@@ -232,8 +231,17 @@ export default function App() {
                 할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 관리할 수 있는 일정 관리 앱입니다. 
                 로컬 스토리지를 활용해 새로고침 시에도 데이터가 유지되도록 설계했습니다.
               </p>
+              
+              {/* 🚨 완성된 2개의 버튼 (Live Site + GitHub) */}
               <div className="flex gap-4">
-                {/* 🚨 TaskFlow 진짜 링크 적용! */}
+                <a 
+                  href="https://taskflow-inky-beta.vercel.app/" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-teal-500 text-white text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                >
+                  Live Site 🚀
+                </a>
                 <a 
                   href="https://github.com/kimyvwol-beep/taskflow" 
                   target="_blank" 
@@ -243,6 +251,7 @@ export default function App() {
                   GitHub Code &rarr;
                 </a>
               </div>
+
             </div>
           </div>
 
