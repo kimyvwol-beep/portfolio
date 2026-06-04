@@ -3,17 +3,18 @@ import { useState, useEffect, useRef } from "react";
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // 🚨 [핵심 수정] HTML 태그 자체에 다크모드를 강제로 먹여서 완벽한 흰/검 배경 만들기
+  // HTML 태그 다크모드 강제 적용
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
-      document.documentElement.style.backgroundColor = '#000000'; // 다크모드 바탕 찐검정
+      document.documentElement.style.backgroundColor = '#000000';
     } else {
       document.documentElement.classList.remove('dark');
-      document.documentElement.style.backgroundColor = '#ffffff'; // 라이트모드 바탕 찐흰색
+      document.documentElement.style.backgroundColor = '#ffffff';
     }
   }, [isDarkMode]);
 
+  // 스크롤 애니메이션 훅
   const useScrollAnimation = () => {
     const elementRef = useRef(null);
     useEffect(() => {
@@ -40,24 +41,27 @@ export default function App() {
   const block2Ref = useScrollAnimation();
   const block3Ref = useScrollAnimation();
   const block4Ref = useScrollAnimation();
+  
+  // 프로젝트 섹션용 애니메이션
+  const projTitleRef = useScrollAnimation();
+  const proj1Ref = useScrollAnimation();
+  const proj2Ref = useScrollAnimation();
 
   return (
-    // 배경은 무조건 bg-white / bg-black, 글씨는 text-black / text-white 
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans transition-colors duration-700 relative overflow-hidden">
       
       {/* 앰비언트 라이트 (네온 조명) */}
       <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/20 blur-[150px] pointer-events-none transition-opacity duration-1000 dark:opacity-100 opacity-0"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[150px] pointer-events-none transition-opacity duration-1000 dark:opacity-100 opacity-0"></div>
 
+      {/* 1. 네비게이션 바 */}
       <nav className="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-xl sticky top-0 z-50 transition-colors duration-700">
         <div className="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
           <span className="text-xl font-black tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-400">
             KYW&apos;S PORTFOLIO
           </span>
-          
           <div className="flex items-center gap-6 text-sm font-semibold tracking-wide">
             <a href="mailto:kimyvwol@naver.com" className="hover:text-purple-500 transition-colors">Contact</a>
-            
             <button 
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="group relative inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 hover:scale-110 transition-all duration-300 shadow-inner border border-gray-200 dark:border-gray-700"
@@ -71,6 +75,7 @@ export default function App() {
         </div>
       </nav>
 
+      {/* 2. 히어로 섹션 */}
       <header ref={heroRef} className="relative py-32 md:py-48 text-center px-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
         <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm text-purple-600 dark:text-purple-300 text-xs font-bold tracking-widest uppercase shadow-[0_0_20px_rgba(168,85,247,0.2)]">
           Front-end Engineer
@@ -88,14 +93,14 @@ export default function App() {
         </p>
       </header>
 
-      <section className="relative z-10 py-24 px-6 max-w-5xl mx-auto">
+      {/* 3. 코어 스킬 섹션 */}
+      <section className="relative z-10 py-20 px-6 max-w-5xl mx-auto">
         <div ref={titleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
           <h2 className="text-xs font-bold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-3">Capabilities</h2>
           <p className="text-3xl md:text-4xl font-black tracking-tight drop-shadow-sm">제가 다룰 수 있는 기술들</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          
           <div ref={block1Ref} className="group relative transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md delay-100">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 transform transition duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl z-10">
@@ -167,11 +172,74 @@ export default function App() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 4. 새로 추가된 핵심 프로젝트 섹션! */}
+      <section className="relative z-10 py-24 px-6 max-w-5xl mx-auto border-t border-gray-200/50 dark:border-gray-800/50 mt-12">
+        <div ref={projTitleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
+          <h2 className="text-xs font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-3">Featured Projects</h2>
+          <p className="text-3xl md:text-4xl font-black tracking-tight drop-shadow-sm">배운 기술을 증명하는 결과물</p>
+        </div>
+
+        <div className="space-y-12">
+          
+          {/* 프로젝트 1: CineLog */}
+          <div ref={proj1Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-purple-300 dark:hover:border-purple-500/50 hover:shadow-xl">
+            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center overflow-hidden shadow-inner relative">
+              <span className="text-white/80 font-black text-2xl tracking-widest z-10">CineLog</span>
+              <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-xl top-[-20px] right-[-20px]"></div>
+            </div>
+            
+            <div className="w-full md:w-3/5 flex flex-col justify-center">
+              <div className="flex gap-2 mb-4">
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Tailwind</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">REST API</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-black mb-4">트렌딩 영화 탐색 서비스, CineLog</h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
+                외부 영화 API(TMDB)를 연동하여 실시간으로 유행하는 영화 데이터를 불러오고 검색할 수 있는 웹 서비스입니다. 
+                비동기 통신 시 사용자가 지루함을 느끼지 않도록 스켈레톤 UI를 적용하였으며, 최적화를 위해 디바운싱(Debouncing) 검색을 구현했습니다.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md">
+                  GitHub Code &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* 프로젝트 2: TaskFlow */}
+          <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-xl">
+            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center overflow-hidden shadow-inner relative">
+              <span className="text-white/80 font-black text-2xl tracking-widest z-10">TaskFlow</span>
+              <div className="absolute w-32 h-32 bg-black/10 rounded-full blur-xl bottom-[-20px] left-[-20px]"></div>
+            </div>
+            
+            <div className="w-full md:w-3/5 flex flex-col justify-center">
+              <div className="flex gap-2 mb-4">
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React Hooks</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Local Storage</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-black mb-4">칸반보드 일정 관리 앱, TaskFlow</h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
+                할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 관리할 수 있는 트렐로(Trello) 스타일의 웹 애플리케이션입니다. 
+                React의 복잡한 배열/객체 상태 관리를 경험했으며, 브라우저의 로컬 스토리지를 활용해 새로고침 시에도 데이터가 유지되도록 설계했습니다.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md">
+                  GitHub Code &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
 
         </div>
       </section>
 
-      <footer className="relative z-10 bg-white/50 dark:bg-black/50 backdrop-blur-md border-t border-gray-200 dark:border-gray-900 py-20 text-center px-4 transition-colors duration-700 mt-20">
+      {/* 5. 푸터 */}
+      <footer className="relative z-10 bg-white/50 dark:bg-black/50 backdrop-blur-md border-t border-gray-200 dark:border-gray-900 py-20 text-center px-4 transition-colors duration-700 mt-10">
         <h2 className="text-sm font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-8">CONTACT ME</h2>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-base font-mono text-black dark:text-white">
           <p className="hover:text-purple-500 transition-colors cursor-pointer">kimyvwol@naver.com</p>
