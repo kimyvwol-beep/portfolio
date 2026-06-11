@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // HTML 태그 다크모드 강제 적용 및 배경색 고정
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -14,7 +13,6 @@ export default function App() {
     }
   }, [isDarkMode]);
 
-  // 스크롤 애니메이션 훅 (블러 + 페이드인)
   const useScrollAnimation = () => {
     const elementRef = useRef(null);
     useEffect(() => {
@@ -49,11 +47,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans transition-colors duration-700 relative overflow-hidden">
       
-      {/* 앰비언트 라이트 (네온 조명) */}
       <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/20 blur-[150px] pointer-events-none transition-opacity duration-1000 dark:opacity-100 opacity-0"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[150px] pointer-events-none transition-opacity duration-1000 dark:opacity-100 opacity-0"></div>
 
-      {/* 1. 네비게이션 바 */}
+      {/* 네비게이션 바 */}
       <nav className="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-black/80 backdrop-blur-xl sticky top-0 z-50 transition-colors duration-700">
         <div className="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
           <span className="text-xl font-black tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-400">
@@ -74,7 +71,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* 2. 히어로 섹션 */}
+      {/* 히어로 섹션 */}
       <header ref={heroRef} className="relative py-32 md:py-48 text-center px-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
         <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm text-purple-600 dark:text-purple-300 text-xs font-bold tracking-widest uppercase shadow-[0_0_20px_rgba(168,85,247,0.2)]">
           Front-end Engineer
@@ -92,7 +89,7 @@ export default function App() {
         </p>
       </header>
 
-      {/* 3. 코어 스킬 섹션 */}
+      {/* 코어 스킬 섹션 */}
       <section className="relative z-10 py-20 px-6 max-w-5xl mx-auto">
         <div ref={titleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
           <h2 className="text-xs font-bold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-3">Capabilities</h2>
@@ -131,7 +128,7 @@ export default function App() {
               <ul className="space-y-3 text-sm md:text-base text-gray-700 dark:text-gray-400 font-light">
                 <li className="flex items-start gap-3"><span className="text-blue-600 dark:text-blue-400 mt-0.5">✦</span><span>useState, useEffect를 활용한 컴포넌트 라이프사이클 관리</span></li>
                 <li className="flex items-start gap-3"><span className="text-blue-600 dark:text-blue-400 mt-0.5">✦</span><span>가독성을 고려한 컴포넌트 분리 및 효율적 구조 설계</span></li>
-                <li className="flex items-start gap-3"><span className="text-blue-600 dark:text-blue-400 mt-0.5">✦</span><span>React Router를 이용한 매끄러운 SPA 라우팅 구현</span></li>
+                <li className="flex items-start gap-3"><span className="text-blue-600 dark:text-blue-400 mt-0.5">✦</span><span>복잡한 상태 관리를 위한 커스텀 훅 및 상태 전달 최적화</span></li>
               </ul>
             </div>
           </div>
@@ -174,7 +171,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. 프로젝트 섹션 */}
+      {/* 프로젝트 섹션 */}
       <section className="relative z-10 py-24 px-6 max-w-5xl mx-auto border-t border-gray-200/50 dark:border-gray-800/50 mt-12">
         <div ref={projTitleRef} className="mb-16 text-center md:text-left transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 translate-y-12 blur-md">
           <h2 className="text-xs font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-3">Featured Projects</h2>
@@ -183,56 +180,25 @@ export default function App() {
 
         <div className="space-y-12">
           
-          {/* 프로젝트 1: CineLog */}
-          <div ref={proj1Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-purple-300 dark:hover:border-purple-500/50 hover:shadow-xl">
-            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center overflow-hidden shadow-inner relative">
-              <span className="text-white/80 font-black text-2xl tracking-widest z-10">CineLog</span>
-              <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-xl top-[-20px] right-[-20px]"></div>
-            </div>
-            
-            <div className="w-full md:w-3/5 flex flex-col justify-center">
-              <div className="flex gap-2 mb-4">
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React</span>
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Tailwind</span>
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">REST API</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-black mb-4">트렌딩 영화 탐색 서비스, CineLog</h3>
-              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
-                외부 영화 API(TMDB)를 연동하여 실시간으로 유행하는 영화 데이터를 불러오고 검색할 수 있는 웹 서비스입니다. 
-                비동기 통신 시 사용자가 지루함을 느끼지 않도록 스켈레톤 UI를 적용했습니다.
-              </p>
-              <div className="flex gap-4">
-                <a 
-                  href="https://github.com/kimyvwol-beep/cinelog" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
-                >
-                  GitHub Code &rarr;
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* 프로젝트 2: TaskFlow */}
-          <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-xl">
-            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-400 to-teal-500 flex items-center justify-center overflow-hidden shadow-inner relative">
-              <span className="text-white/80 font-black text-2xl tracking-widest z-10">TaskFlow</span>
+          {/* 프로젝트 1: TaskFlow */}
+          <div ref={proj1Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-teal-300 dark:hover:border-teal-500/50 hover:shadow-xl">
+            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-teal-400 to-blue-500 flex items-center justify-center overflow-hidden shadow-inner relative">
+              <span className="text-white/90 font-black text-3xl tracking-widest z-10 drop-shadow-md">TaskFlow</span>
               <div className="absolute w-32 h-32 bg-black/10 rounded-full blur-xl bottom-[-20px] left-[-20px]"></div>
             </div>
             
             <div className="w-full md:w-3/5 flex flex-col justify-center">
-              <div className="flex gap-2 mb-4">
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React Hooks</span>
+              <div className="flex gap-2 mb-4 flex-wrap">
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Tailwind CSS</span>
                 <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Local Storage</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-black mb-4">칸반보드 일정 관리 앱, TaskFlow</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
-                할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 관리할 수 있는 일정 관리 앱입니다. 
-                로컬 스토리지를 활용해 새로고침 시에도 데이터가 유지되도록 설계했습니다.
+                할 일(Todo), 진행 중(Doing), 완료(Done) 상태로 일정을 나누어 직관적으로 관리할 수 있는 애플리케이션입니다. 
+                드래그 앤 드롭 API를 활용해 사용자 경험을 높이고, 브라우저 스토리지에 데이터를 안전하게 저장합니다.
               </p>
               
-              {/* 🚨 완성된 2개의 버튼 (Live Site + GitHub) */}
               <div className="flex gap-4">
                 <a 
                   href="https://taskflow-inky-beta.vercel.app/" 
@@ -251,14 +217,54 @@ export default function App() {
                   GitHub Code &rarr;
                 </a>
               </div>
+            </div>
+          </div>
 
+          {/* 🔥 프로젝트 2: 대망의 Room Planner (유월님 기획 작품) */}
+          <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-500 dark:hover:border-blue-500/50 hover:shadow-xl">
+            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#0058a3] to-blue-400 flex items-center justify-center overflow-hidden shadow-inner relative border border-gray-200 dark:border-gray-700">
+              <span className="text-[#ffd500] font-black text-3xl tracking-tight z-10 drop-shadow-md">RoomPlanner</span>
+              <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-xl top-[-20px] right-[-20px]"></div>
+            </div>
+            
+            <div className="w-full md:w-3/5 flex flex-col justify-center">
+              <div className="flex gap-2 mb-4 flex-wrap">
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Drag & Drop Math</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Dynamic Scale</span>
+                <span className="px-3 py-1 bg-[#ffd500]/20 dark:bg-[#ffd500]/10 text-xs font-bold rounded-full text-[#0058a3] dark:text-[#ffd500]">💡 UX/UI 최적화</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-black mb-4">내 방 가구 배치 시뮬레이터, RoomPlanner</h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
+                실제 이사 경험에서 느낀 불편함을 바탕으로 <strong>직접 기획하고 디자인한</strong> 가구 배치 시뮬레이터입니다.
+                동적 스케일(Scale) 비율 연산과 정밀한 마우스 오프셋(Offset) 좌표 계산을 통해 자연스러운 배치를 구현했으며, 가구가 도면 밖으로 이탈하지 않도록 수학적 충돌 방지 로직을 적용했습니다.
+              </p>
+              
+              <div className="flex gap-4">
+                <a 
+                  href="https://room-planner-dusky.vercel.app/" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-[#0058a3] text-white text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                >
+                  Live Site 🚀
+                </a>
+                <a 
+                  href="https://github.com/kimyvwol-beep/room-planner" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                >
+                  GitHub Code &rarr;
+                </a>
+              </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* 5. 푸터 */}
+      {/* 푸터 */}
       <footer className="relative z-10 bg-white/50 dark:bg-black/50 backdrop-blur-md border-t border-gray-200 dark:border-gray-900 py-20 text-center px-4 transition-colors duration-700 mt-10">
         <h2 className="text-sm font-bold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-8">CONTACT ME</h2>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-base font-mono text-black dark:text-white">
