@@ -97,6 +97,7 @@ export default function App() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
+          {/* 스킬 블록 1 */}
           <div ref={block1Ref} className="group relative transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md delay-100">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 transform transition duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl z-10">
@@ -109,12 +110,13 @@ export default function App() {
               </p>
               <ul className="space-y-3 text-sm md:text-base text-gray-700 dark:text-gray-400 font-light">
                 <li className="flex items-start gap-3"><span className="text-yellow-500 dark:text-yellow-400 mt-0.5">✦</span><span>Promise 및 async/await를 활용한 직관적인 비동기 처리</span></li>
-                <li className="flex items-start gap-3"><span className="text-yellow-500 dark:text-yellow-400 mt-0.5">✦</span><span>실행 콘텍스트와 클로저에 대한 기본적인 이해</span></li>
+                <li className="flex items-start gap-3"><span className="text-yellow-500 dark:text-yellow-400 mt-0.5">✦</span><span>배열 메서드와 Date 객체를 활용한 복잡한 데이터 가공 로직 구현</span></li>
                 <li className="flex items-start gap-3"><span className="text-yellow-500 dark:text-yellow-400 mt-0.5">✦</span><span>DOM API 직접 제어를 통한 동적인 UI 로직 구현</span></li>
               </ul>
             </div>
           </div>
 
+          {/* 스킬 블록 2 */}
           <div ref={block2Ref} className="group relative transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md delay-200">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 transform transition duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl z-10">
@@ -133,6 +135,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* 스킬 블록 3 */}
           <div ref={block3Ref} className="group relative transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md delay-100">
             <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 transform transition duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl z-10">
@@ -146,11 +149,12 @@ export default function App() {
               <ul className="space-y-3 text-sm md:text-base text-gray-700 dark:text-gray-400 font-light">
                 <li className="flex items-start gap-3"><span className="text-pink-500 dark:text-pink-400 mt-0.5">✦</span><span>Flexbox와 Grid를 활용한 안정적인 화면 레이아웃 빌드</span></li>
                 <li className="flex items-start gap-3"><span className="text-pink-500 dark:text-pink-400 mt-0.5">✦</span><span>Tailwind CSS를 활용하여 신속하고 일관된 디자인 시스템 적용</span></li>
-                <li className="flex items-start gap-3"><span className="text-pink-500 dark:text-pink-400 mt-0.5">✦</span><span>다크모드 및 모바일 최적화를 고려한 세밀한 UI/UX 구현</span></li>
+                <li className="flex items-start gap-3"><span className="text-pink-500 dark:text-pink-400 mt-0.5">✦</span><span>사용자 경험(UX)을 극대화하는 세밀한 애니메이션 및 트랜지션 제어</span></li>
               </ul>
             </div>
           </div>
 
+          {/* 스킬 블록 4 */}
           <div ref={block4Ref} className="group relative transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md delay-200">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-8 transform transition duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl z-10">
@@ -220,37 +224,37 @@ export default function App() {
             </div>
           </div>
 
-          {/* 🔥 프로젝트 2: 대망의 Room Planner (유월님 기획 작품) */}
-          <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-500 dark:hover:border-blue-500/50 hover:shadow-xl">
-            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#0058a3] to-blue-400 flex items-center justify-center overflow-hidden shadow-inner relative border border-gray-200 dark:border-gray-700">
-              <span className="text-[#ffd500] font-black text-3xl tracking-tight z-10 drop-shadow-md">RoomPlanner</span>
-              <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-xl top-[-20px] right-[-20px]"></div>
+          {/* 🔥 프로젝트 2: 대망의 Monthly (핀테크 앱) */}
+          <div ref={proj2Ref} className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 transition-all duration-1000 ease-out opacity-0 translate-y-12 blur-md hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-xl">
+            <div className="w-full md:w-2/5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#f2f4f6] to-[#e5e8eb] dark:from-gray-800 dark:to-gray-700 flex items-center justify-center overflow-hidden shadow-inner relative border border-gray-200 dark:border-gray-700">
+              <span className="text-[#3182f6] dark:text-[#4b94fa] font-black text-4xl tracking-tight z-10 drop-shadow-sm">Monthly</span>
+              <div className="absolute w-32 h-32 bg-white/50 dark:bg-black/20 rounded-full blur-xl top-[-20px] right-[-20px]"></div>
             </div>
             
             <div className="w-full md:w-3/5 flex flex-col justify-center">
               <div className="flex gap-2 mb-4 flex-wrap">
                 <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">React</span>
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Drag & Drop Math</span>
-                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Dynamic Scale</span>
-                <span className="px-3 py-1 bg-[#ffd500]/20 dark:bg-[#ffd500]/10 text-xs font-bold rounded-full text-[#0058a3] dark:text-[#ffd500]">💡 UX/UI 최적화</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Array Reduce</span>
+                <span className="px-3 py-1 bg-gray-200 dark:bg-gray-800 text-xs font-bold rounded-full text-gray-700 dark:text-gray-300">Date Object</span>
+                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-xs font-bold rounded-full text-blue-600 dark:text-blue-400">💡 FinTech UI/UX</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-black mb-4">내 방 가구 배치 시뮬레이터, RoomPlanner</h3>
+              <h3 className="text-2xl md:text-3xl font-black mb-4">나만의 고정지출 관리기, Monthly</h3>
               <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-6">
-                실제 이사 경험에서 느낀 불편함을 바탕으로 <strong>직접 기획하고 디자인한</strong> 가구 배치 시뮬레이터입니다.
-                동적 스케일(Scale) 비율 연산과 정밀한 마우스 오프셋(Offset) 좌표 계산을 통해 자연스러운 배치를 구현했으며, 가구가 도면 밖으로 이탈하지 않도록 수학적 충돌 방지 로직을 적용했습니다.
+                넷플릭스 구독료, 통신비, 가전제품 할부 등 매달 나가는 고정 지출을 한눈에 파악할 수 있는 핀테크 대시보드입니다. 
+                JavaScript의 <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-sm">Date</code> 객체와 배열 메서드를 활용하여 실시간 할부 진행률 및 당월 총 청구 금액을 자동 계산하며, 사용자 친화적이고 직관적인 애니메이션을 적용했습니다.
               </p>
               
               <div className="flex gap-4">
                 <a 
-                  href="https://room-planner-dusky.vercel.app/" 
+                  href="https://monthly-tracker-lyart.vercel.app/" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="px-5 py-2.5 bg-[#0058a3] text-white text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
+                  className="px-5 py-2.5 bg-[#3182f6] text-white text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
                 >
                   Live Site 🚀
                 </a>
                 <a 
-                  href="https://github.com/kimyvwol-beep/room-planner" 
+                  href="https://github.com/kimyvwol-beep/monthly-tracker" 
                   target="_blank" 
                   rel="noreferrer"
                   className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-bold rounded-xl hover:scale-105 transition-transform shadow-md"
