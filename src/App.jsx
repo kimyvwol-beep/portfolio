@@ -2,43 +2,49 @@ import { useEffect } from "react";
 
 export default function App() {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          } else {
-            entry.target.classList.remove("is-visible");
-          }
-        });
-      },
-      // 요소가 화면에 5%만 보여도 바로 애니메이션이 시작되도록 민감도를 낮췄습니다!
-      { threshold: 0.05 } 
-    );
-
-    // 화면이 다 그려지고 나서 요소를 찾도록 0.1초의 여유(setTimeout)를 줍니다.
-    const timer = setTimeout(() => {
+    // 모든 브라우저에서 100% 작동하는 절대 좌표 스크롤 계산기
+    const handleScroll = () => {
       const elements = document.querySelectorAll(".reveal-slice");
-      elements.forEach((el) => observer.observe(el));
-    }, 100);
+      
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        
+        // 요소가 브라우저 화면 안으로 들어왔는지 실시간 수학 연산
+        const isVisible = rect.top < window.innerHeight - 40 && rect.bottom > 0;
+        
+        if (isVisible) {
+          el.classList.add("is-visible");
+        } else {
+          el.classList.remove("is-visible"); // 화면 밖으로 나가면 다시 초기화 (무한 반복)
+        }
+      });
+    };
 
+    // 페이지가 처음 켜졌을 때도 강제로 한 번 계산해서 화면을 띄워줍니다.
+    handleScroll();
+
+    // 스크롤할 때와 화면 크기가 바뀔 때마다 감지
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    // 컴포넌트가 꺼질 때 청소
     return () => {
-      clearTimeout(timer);
-      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
   return (
     <div className="min-h-screen bg-[#111111] text-[#f5f5f5] font-sans selection:bg-white selection:text-black overflow-x-hidden">
       
-      {/* 🔥 맥북(Safari) 호환성을 위한 -webkit- 접두사와 투명도 안전장치 추가 */}
+      {/* 찢어지며 열리는 듯한 슬라이스 마스크 효과 스타일 */}
       <style>{`
         .reveal-slice {
-          opacity: 0; /* 만약 클립패스가 안 먹히는 환경이어도 투명도로 스르륵 나타나게 하는 안전장치 */
+          opacity: 0;
           -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
           clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
           transform: translateY(40px);
-          transition: opacity 1s ease-out, -webkit-clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+          transition: opacity 0.6s ease-out, -webkit-clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1), clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .reveal-slice.is-visible {
           opacity: 1;
@@ -89,7 +95,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="reveal-slice flex flex-col justify-end" style={{ transitionDelay: '0.15s' }}>
+          <div className="reveal-slice flex flex-col justify-end">
             <div className="flex flex-wrap gap-2 mb-10 text-xs md:text-sm font-bold tracking-widest uppercase">
               <span className="border border-white/30 px-4 py-2 rounded-full">Frontend</span>
               <span className="border border-white/30 px-4 py-2 rounded-full">React</span>
@@ -141,7 +147,7 @@ export default function App() {
             </div>
 
             {/* 프로젝트 2: TaskFlow */}
-            <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111]" style={{ transitionDelay: '0.1s' }}>
+            <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111]">
               <div className="w-full md:w-1/3">
                 <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">TaskFlow</h3>
                 <p className="text-gray-400 mb-8 font-medium">칸반보드 일정 관리 앱</p>
