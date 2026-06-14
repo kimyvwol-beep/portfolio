@@ -115,18 +115,18 @@ export default function App() {
             {/* 프로젝트 1: Monthly */}
             <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] relative overflow-hidden transition-all duration-300 cursor-default">
               
-              {/* 🔥 해결 완료: 투명도(Opacity) 기반의 100% 안전한 호버 서사 패널 */}
+              {/* 🔥 내용이 업그레이드된 개발 과정 오버레이 패널 */}
               <div className="absolute inset-0 bg-white text-black p-8 md:p-12 flex flex-col justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 z-30">
                 <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Behind the Scenes</span>
-                <h4 className="text-2xl font-black mb-4">Monthly 개발 서사</h4>
+                <h4 className="text-2xl font-black mb-4">Monthly 개발 과정</h4>
                 <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
-                  원래는 대규모 3D 공간 시뮬레이터를 기획했으나, 브라우저 환경의 렌더링 한계와 현재 리소스상의 스펙을 냉정하게 판단하여 과감히 프로젝트를 피벗(Pivot)했습니다. 화려한 겉모습 대신 실생활의 가계 경제 불편함을 해결하는 '본질'에 집중했습니다. JavaScript의 날짜 연산 메커니즘을 짚어보며 정밀한 할부 회차 계산기 기능을 완성했고, 데이터 정제를 통해 주니어로서 구현할 수 있는 가장 탄탄하고 완성도 높은 핀테크 서비스를 도출해 냈습니다.
+                  처음에는 '1인 독립 가구'를 위한 3D 공간 시뮬레이터를 기획했으나, 브라우저 렌더링 한계와 리소스 스펙을 냉정하게 판단하여 과감히 프로젝트를 피벗(Pivot)했습니다. 대신 자취생들이 실생활에서 가장 흔하게 겪는 어려움인 '넷플릭스 구독료, 통신비, 가전제품 할부 등 파편화된 고정 지출 관리'라는 본질적인 문제 해결에 집중했습니다. JavaScript의 Date 객체를 깊이 있게 활용해 현재 날짜 기준의 정밀한 할부 회차 계산 로직을 직접 구현했으며, 1인 가구의 예산 관리를 돕는 직관적이고 탄탄한 핀테크 대시보드로 완성했습니다.
                 </p>
               </div>
 
               <div className="w-full md:w-1/3 relative z-10">
                 <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">Monthly</h3>
-                <p className="text-gray-400 mb-8 font-medium">나만의 고정지출 관리기</p>
+                <p className="text-gray-400 mb-8 font-medium">1인 가구 고정지출 관리기</p>
                 <div className="flex flex-wrap gap-2 mb-10">
                   <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
                   <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">JS Date</span>
@@ -151,10 +151,9 @@ export default function App() {
             {/* 프로젝트 2: TaskFlow */}
             <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] relative overflow-hidden transition-all duration-300 cursor-default">
               
-              {/* 🔥 해결 완료: 투명도(Opacity) 기반의 100% 안전한 호버 서사 패널 */}
               <div className="absolute inset-0 bg-white text-black p-8 md:p-12 flex flex-col justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 z-30">
                 <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Behind the Scenes</span>
-                <h4 className="text-2xl font-black mb-4">TaskFlow 개발 서사</h4>
+                <h4 className="text-2xl font-black mb-4">TaskFlow 개발 과정</h4>
                 <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
                   리액트의 상태 구조와 데이터의 흐름, 컴포넌트 생명주기를 완벽하게 다져보기 위해 기획한 첫 칸반보드 프로젝트입니다. 외부 라이브러리에 의존하지 않고 HTML5 순정 Drag & Drop API를 직접 제어하는 과정에서 브라우저별 좌표 드롭 오작동 버그를 마주했고, 이벤트 커스텀 핸들러를 구축해 이를 극복했습니다. LocalStorage 연동을 통해 새로고침 후에도 일정이 유지되는 데이터 지속성까지 고려하며, 프론트엔드가 갖춰야 할 웹의 핵심 기본기를 꽉 채워 구현했습니다.
                 </p>
