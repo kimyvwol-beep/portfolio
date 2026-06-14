@@ -6,37 +6,43 @@ export default function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // 화면에 들어오면 'is-visible' 클래스를 추가해 마스크를 확 벗겨냅니다.
             entry.target.classList.add("is-visible");
           } else {
-            // 화면에서 벗어나면 다시 숨깁니다 (무한 반복)
             entry.target.classList.remove("is-visible");
           }
         });
       },
-      { threshold: 0.15 } 
+      // 요소가 화면에 5%만 보여도 바로 애니메이션이 시작되도록 민감도를 낮췄습니다!
+      { threshold: 0.05 } 
     );
 
-    const elements = document.querySelectorAll(".reveal-slice");
-    elements.forEach((el) => observer.observe(el));
+    // 화면이 다 그려지고 나서 요소를 찾도록 0.1초의 여유(setTimeout)를 줍니다.
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll(".reveal-slice");
+      elements.forEach((el) => observer.observe(el));
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-[#111111] text-[#f5f5f5] font-sans selection:bg-white selection:text-black overflow-x-hidden">
       
-      {/* 🔥 [핵심] 클립 패스 애니메이션을 위한 커스텀 스타일 */}
+      {/* 🔥 맥북(Safari) 호환성을 위한 -webkit- 접두사와 투명도 안전장치 추가 */}
       <style>{`
         .reveal-slice {
-          /* 요소의 아랫부분 100%를 잘라내어 완전히 숨김 (종이가 닫힌 상태) */
+          opacity: 0; /* 만약 클립패스가 안 먹히는 환경이어도 투명도로 스르륵 나타나게 하는 안전장치 */
+          -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
           clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-          transform: translateY(60px);
-          /* 부드러우면서도 끝에서 탁! 하고 걸리는 고급스러운 가속도(cubic-bezier) 적용 */
-          transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+          transform: translateY(40px);
+          transition: opacity 1s ease-out, -webkit-clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .reveal-slice.is-visible {
-          /* 요소의 숨겨진 부분을 0%로 만들어 완전히 보여줌 (종이가 열린 상태) */
+          opacity: 1;
+          -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           transform: translateY(0);
         }
