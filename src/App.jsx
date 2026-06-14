@@ -115,12 +115,12 @@ export default function App() {
             {/* 프로젝트 1: Monthly */}
             <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] relative overflow-hidden transition-all duration-300 cursor-default">
               
-              {/* 🔥 내용이 업그레이드된 개발 과정 오버레이 패널 */}
+              {/* 🔥 유월님의 생생한 고민과 피벗 과정이 담긴 개발 과정 서사 */}
               <div className="absolute inset-0 bg-white text-black p-8 md:p-12 flex flex-col justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 z-30">
                 <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Behind the Scenes</span>
                 <h4 className="text-2xl font-black mb-4">Monthly 개발 과정</h4>
                 <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
-                  처음에는 '1인 독립 가구'를 위한 3D 공간 시뮬레이터를 기획했으나, 브라우저 렌더링 한계와 리소스 스펙을 냉정하게 판단하여 과감히 프로젝트를 피벗(Pivot)했습니다. 대신 자취생들이 실생활에서 가장 흔하게 겪는 어려움인 '넷플릭스 구독료, 통신비, 가전제품 할부 등 파편화된 고정 지출 관리'라는 본질적인 문제 해결에 집중했습니다. JavaScript의 Date 객체를 깊이 있게 활용해 현재 날짜 기준의 정밀한 할부 회차 계산 로직을 직접 구현했으며, 1인 가구의 예산 관리를 돕는 직관적이고 탄탄한 핀테크 대시보드로 완성했습니다.
+                  20대인 저를 포함해 주변에 1인 독립 가구가 많아지는 것을 보며 분명한 수요가 있을 것이라 판단해, 처음에는 '1인 독립 가구의 이사를 위한 공간 가구 배치 시뮬레이터'를 기획했습니다. 하지만 기획 단계에서 제 기술적 역량의 한계를 냉정하게 인정하고 과감히 프로젝트를 피벗(Pivot)했습니다. 대신 이른바 '대 OTT 및 카드 할부 시대'에 1인 가구들이 실생활에서 가장 흔하게 겪는 파편화된 '고정 지출 관리' 문제에 집중했습니다. JavaScript의 Date 객체를 깊이 있게 활용해 정밀한 할부 회차 계산 로직을 직접 구현해 내며, 현실적이면서도 탄탄한 핀테크 대시보드를 완성했습니다.
                 </p>
               </div>
 
