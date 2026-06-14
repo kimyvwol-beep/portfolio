@@ -107,4 +107,58 @@ export default function App() {
                 <div className="flex flex-wrap gap-2 mb-10">
                   <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
                   <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">JS Date</span>
-                  <span className="text-[10px
+                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">FinTech UI</span>
+                </div>
+                <div className="flex gap-4">
+                  <a href="https://monthly-tracker-lyart.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-white text-black px-6 py-3 hover:bg-gray-300 transition-colors uppercase tracking-wider">
+                    Live Site ↗
+                  </a>
+                  <a href="https://github.com/kimyvwol-beep/monthly-tracker" target="_blank" rel="noreferrer" className="text-sm font-bold border border-white px-6 py-3 hover:bg-white/10 transition-colors uppercase tracking-wider">
+                    GitHub ↗
+                  </a>
+                </div>
+              </div>
+              <div className="w-full md:w-2/3 flex flex-col justify-center">
+                <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
+                  넷플릭스 구독료, 통신비, 가전제품 할부 등 매달 나가는 고정 지출을 한눈에 파악할 수 있는 핀테크 대시보드입니다. JavaScript의 Date 객체와 배열 메서드를 활용하여 실시간 할부 진행률 및 당월 총 청구 금액을 자동 계산합니다.
+                </p>
+              </div>
+            </div>
+
+            {/* 프로젝트 2: TaskFlow (스크롤 애니메이션 적용) */}
+            <div className="group border border-white/20 hover:border-white transition-all duration-300 p-8 md:p-12 flex flex-col md:flex-row gap-10 scroll-element opacity-0 translate-y-12 transition-all duration-1000 delay-100 ease-out">
+              <div className="w-full md:w-1/3">
+                <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">TaskFlow</h3>
+                <p className="text-gray-400 mb-8 font-medium">칸반보드 일정 관리 앱</p>
+                <div className="flex flex-wrap gap-2 mb-10">
+                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
+                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">Drag & Drop</span>
+                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">LocalStorage</span>
+                </div>
+                <div className="flex gap-4">
+                  <a href="https://taskflow-inky-beta.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-white text-black px-6 py-3 hover:bg-gray-300 transition-colors uppercase tracking-wider">
+                    Live Site ↗
+                  </a>
+                  <a href="https://github.com/kimyvwol-beep/taskflow" target="_blank" rel="noreferrer" className="text-sm font-bold border border-white px-6 py-3 hover:bg-white/10 transition-colors uppercase tracking-wider">
+                    GitHub ↗
+                  </a>
+                </div>
+              </div>
+              <div className="w-full md:w-2/3 flex flex-col justify-center">
+                <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
+                  할 일, 진행 중, 완료 상태로 일정을 나누어 직관적으로 관리할 수 있는 애플리케이션입니다. 드래그 앤 드롭 API를 활용해 사용자 경험을 높이고, 브라우저 스토리지에 데이터를 안전하게 저장하여 데이터의 지속성을 보장합니다.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t border-white/20 py-12 text-center text-gray-600 text-xs font-bold tracking-widest uppercase mt-20 scroll-element opacity-0 translate-y-12 transition-all duration-1000 ease-out">
+        Designed & Developed by KIM YU WOL
+      </footer>
+
+    </div>
+  );
+}
