@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-// 면접관 피드백을 반영하여 구조화된 프로젝트 데이터
+// 기술적 깊이가 돋보이도록 트러블슈팅과 해결 과정을 뾰족하게 다듬은 데이터
 const projects = [
   {
     id: 1,
@@ -11,8 +11,8 @@ const projects = [
     details: {
       purpose: '1인 가구의 구독/할부 지출 누수 방지 및 직관적인 자산 흐름 파악.',
       techReason: '무거운 날짜 라이브러리(Moment.js 등) 대신 순수 JS Date 객체만 활용하여 번들 사이즈 최적화 및 브라우저 네이티브 API 제어 능력 향상.',
-      troubleshooting: '월별 일수가 다른 문제(28일, 31일)로 인한 정기 결제일 계산 오작동 버그를 발견하여, Date 객체의 setMonth 로직을 커스텀 함수로 분리해 크로스엣지 케이스 해결.',
-      result: '초기 로딩 성능 개선 및 불필요한 외부 의존성 0% 달성, 실제 사용자 관점의 직관적인 UX 구현.'
+      troubleshooting: 'JS Date 객체 특성상 1월 31일에서 한 달을 더하면 3월로 넘어가는 말일 에지 케이스(Edge Case) 버그를 발견했습니다. 결제일이 해당 월의 마지막 일자보다 클 경우, `new Date(year, month + 1, 0)`을 활용해 말일로 자동 보정해주는 유틸리티 함수를 직접 구현했습니다.',
+      result: '결제일 계산 오차율 0% 달성, 외부 의존성 없이 순수 로직만으로 금융 데이터의 정확성을 보장하는 구조 설계.'
     },
     live: 'https://monthly-tracker-lyart.vercel.app/',
     github: 'https://github.com/kimyvwol-beep/monthly-tracker'
@@ -25,9 +25,9 @@ const projects = [
     summary: '할 일, 진행 중, 완료 상태로 일정을 나누어 관리하고 브라우저 스토리지를 활용해 데이터를 유지하는 애플리케이션입니다.',
     details: {
       purpose: '시각적이고 직관적인 일정 관리 경험 제공 및 프론트엔드 데이터 지속성 구현.',
-      techReason: 'React의 상태 구조와 데이터 흐름을 깊이 이해하기 위해 전역 상태 라이브러리(Redux 등)와 외부 Dnd 라이브러리를 배제하고 순수 생명주기와 네이티브 API만으로 구현.',
-      troubleshooting: '특정 브라우저에서 Drag & Drop API의 좌표 인식 오작동 및 상태 업데이트 지연 버그 발생. 커스텀 이벤트 핸들러를 구축하고 디바운싱을 적용하여 렌더링 최적화 및 크로스 브라우징 완화.',
-      result: '외부 라이브러리에 의존하지 않는 탄탄한 상태 관리 로직 구축, 새로고침 시에도 데이터가 100% 보존되는 안정성 확보.'
+      techReason: 'React의 상태 흐름을 깊이 이해하기 위해 전역 상태 라이브러리와 외부 DND 라이브러리를 배제하고 순수 생명주기와 네이티브 API만으로 구현.',
+      troubleshooting: '드래그 시 `dragover` 이벤트가 초당 수십 번 발생하여 불필요한 리렌더링과 프레임 드롭이 발생했습니다. 이를 해결하기 위해 이벤트 핸들러에 `requestAnimationFrame`을 활용한 쓰로틀링(Throttling) 기법을 적용해 렌더링 부하를 제어했습니다.',
+      result: '드래그 이벤트 처리 비용을 대폭 감소시켜 60fps의 부드러운 UI 조작감을 확보하고 새로고침 시에도 데이터가 100% 보존되는 안정성 확보.'
     },
     live: 'https://taskflow-inky-beta.vercel.app/',
     github: 'https://github.com/kimyvwol-beep/taskflow'
@@ -92,7 +92,7 @@ export default function App() {
 
       <main className="max-w-6xl mx-auto px-6 py-16 md:py-24">
         
-        {/* 축소된 자기소개 섹션 (프로젝트로 시선을 빠르게 유도) */}
+        {/* 축소된 자기소개 섹션 */}
         <div className="reveal-slice flex flex-col md:flex-row justify-between items-end gap-8 mb-20 border-b border-white/20 pb-16">
           <div>
             <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter">Frontend<br/>Developer.</h1>
@@ -116,16 +116,16 @@ export default function App() {
         <div>
           <h2 className="reveal-slice text-3xl md:text-5xl font-black mb-12 tracking-tighter uppercase flex items-center justify-between">
             Selected Work
-            <span className="text-sm font-normal text-gray-500 tracking-widest animate-pulse">Hover cards to see technical details ↷</span>
+            <span className="text-sm font-normal text-gray-500 tracking-widest animate-pulse hidden sm:block">Hover cards to see technical details ↷</span>
           </h2>
           
           <div className="space-y-16">
             {projects.map((project) => (
-              <div key={project.id} className="reveal-slice group [perspective:1000px] w-full h-[650px] sm:h-[500px] lg:h-[450px] cursor-pointer">
+              <div key={project.id} className="reveal-slice group [perspective:1000px] w-full h-[680px] sm:h-[500px] lg:h-[450px] cursor-pointer">
                 
                 <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   
-                  {/* [앞면] 프로젝트 기본 정보 요약 */}
+                  {/* [앞면] */}
                   <div className="absolute inset-0 [backface-visibility:hidden] border border-white/20 p-8 md:p-12 flex flex-col lg:flex-row gap-10 bg-[#111111] transition-colors duration-300 group-hover:border-white">
                     <div className="w-full lg:w-1/3">
                       <h3 className="text-4xl md:text-5xl font-black mb-2 tracking-tight">{project.title}</h3>
@@ -143,7 +143,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* [뒷면] 면접관 타겟팅: 문제 해결 및 기술 서사 (스크롤/스캔 친화적 구조) */}
+                  {/* [뒷면] 면접관 타겟팅: 문제 해결 및 기술 서사 */}
                   <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-white bg-white text-black p-8 md:p-12 flex flex-col justify-between overflow-y-auto shadow-2xl">
                     <div className="space-y-4 text-sm md:text-base">
                       <div className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-2 border-b border-gray-200 pb-3">
@@ -156,7 +156,9 @@ export default function App() {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-2 border-b border-gray-200 pb-3">
                         <span className="font-black uppercase tracking-wider text-red-600">트러블슈팅</span>
-                        <p className="text-gray-700 font-medium break-keep">{project.details.troubleshooting}</p>
+                        <p className="text-gray-700 font-medium break-keep bg-red-50 p-2 rounded">
+                          {project.details.troubleshooting}
+                        </p>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-2">
                         <span className="font-black uppercase tracking-wider text-green-700">결과 및 성과</span>
@@ -165,8 +167,27 @@ export default function App() {
                     </div>
                     
                     {/* 링크 컴포넌트 */}
-                    <div className="flex gap-4 mt-8 pt-4 border-t border-gray-200">
-                      <a href={project.live} target="_blank" rel="noreferrer" className="flex-1 text-center text-sm font-black bg-black text-white px-6 py-4 hover:bg-gray-800 transition-colors uppercase tracking-widest">
+                    <div className="flex gap-4 mt-6 pt-4 border-t border-gray-200">
+                      <a href={project.live} target="_blank" rel="noreferrer" className="flex-1 text-center text-sm font-black bg-black text-white px-4 py-3 hover:bg-gray-800 transition-colors uppercase tracking-widest">
                         Live Demo ↗
                       </a>
-                      <a href={project.github} target="_blank" rel="noreferrer" className="flex-1 text-center text-sm font-black border-
+                      <a href={project.github} target="_blank" rel="noreferrer" className="flex-1 text-center text-sm font-black border-2 border-black text-black px-4 py-3 hover:bg-black/5 transition-colors uppercase tracking-widest">
+                        Source Code ↗
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t border-white/20 py-12 text-center text-gray-600 text-xs font-bold tracking-widest uppercase mt-20">
+        Designed & Developed by KIM YU WOL
+      </footer>
+
+    </div>
+  );
+}
