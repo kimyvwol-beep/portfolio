@@ -110,76 +110,103 @@ export default function App() {
             Projects.
           </h2>
           
-          <div className="space-y-8">
+          <div className="space-y-12">
             
             {/* 프로젝트 1: Monthly */}
-            <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] relative overflow-hidden transition-all duration-300 cursor-default">
+            {/* 카드 뒤집기 회전 반경과 원근감을 주기 위한 3D 래퍼 컨테이너 (모바일 텍스트 래핑 고려 고정 높이 지정) */}
+            <div className="reveal-slice group [perspective:1000px] w-full h-[580px] sm:h-[480px] md:h-[400px] cursor-pointer">
               
-              {/* 🔥 유월님의 생생한 고민과 피벗 과정이 담긴 개발 과정 서사 */}
-              <div className="absolute inset-0 bg-white text-black p-8 md:p-12 flex flex-col justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 z-30">
-                <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Behind the Scenes</span>
-                <h4 className="text-2xl font-black mb-4">Monthly 개발 과정</h4>
-                <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
-                  20대인 저를 포함해 주변에 1인 독립 가구가 많아지는 것을 보며 분명한 수요가 있을 것이라 판단해, 처음에는 '1인 독립 가구의 이사를 위한 공간 가구 배치 시뮬레이터'를 기획했습니다. 하지만 기획 단계에서 제 기술적 역량의 한계를 냉정하게 인정하고 과감히 프로젝트를 피벗(Pivot)했습니다. 대신 이른바 '대 OTT 및 카드 할부 시대'에 1인 가구들이 실생활에서 가장 흔하게 겪는 파편화된 '고정 지출 관리' 문제에 집중했습니다. JavaScript의 Date 객체를 깊이 있게 활용해 정밀한 할부 회차 계산 로직을 직접 구현해 내며, 현실적이면서도 탄탄한 핀테크 대시보드를 완성했습니다.
-                </p>
-              </div>
+              {/* 마우스 호버 시 Y축 기준 180도 회전 시키는 내부 카드 휠 */}
+              <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                
+                {/* [앞면] 원본 프로젝트 정보 형태 완벽 보존 */}
+                <div className="absolute inset-0 [backface-visibility:hidden] border border-white/20 p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] transition-colors duration-300 group-hover:border-white">
+                  <div className="w-full md:w-1/3">
+                    <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">Monthly</h3>
+                    <p className="text-gray-400 mb-8 font-medium">1인 가구 고정지출 관리기</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">JS Date</span>
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">FinTech UI</span>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-2/3 flex flex-col justify-center">
+                    <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
+                      넷플릭스 구독료, 통신비, 가전제품 할부 등 매달 나가는 고정 지출을 한눈에 파악할 수 있는 핀테크 대시보드입니다. JavaScript의 Date 객체와 배열 메서드를 활용하여 실시간 할부 진행률 및 당월 총 청구 금액을 자동 계산합니다.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="w-full md:w-1/3 relative z-10">
-                <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">Monthly</h3>
-                <p className="text-gray-400 mb-8 font-medium">1인 가구 고정지출 관리기</p>
-                <div className="flex flex-wrap gap-2 mb-10">
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">JS Date</span>
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">FinTech UI</span>
+                {/* [뒷면] 호버 시 180도 뒤집혀 나타나는 개발 서사 레이어 및 실제 배치된 링크 영역 */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-white bg-white text-black p-8 md:p-12 flex flex-col justify-between">
+                  <div>
+                    <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2 block">Behind the Scenes</span>
+                    <h4 className="text-2xl font-black mb-4">Monthly 개발 과정</h4>
+                    <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
+                      20대인 저를 포함해 주변에 1인 독립 가구가 많아지는 것을 보며 분명한 수요가 있을 것이라 판단해, 처음에는 '1인 독립 가구의 이사를 위한 공간 가구 배치 시뮬레이터'를 기획했습니다. 하지만 기획 단계에서 제 기술적 역량의 한계를 냉정하게 인정하고 과감히 프로젝트를 피벗(Pivot)했습니다. 대신 이른바 '대 OTT 및 카드 할부 시대'에 1인 가구들이 실생활에서 가장 흔하게 겪는 파편화된 '고정 지출 관리' 문제에 집중했습니다. JavaScript의 Date 객체를 깊이 있게 활용해 정밀한 할부 회차 계산 로직을 직접 구현해 내며, 현실적이면서도 탄탄한 핀테크 대시보드를 완성했습니다.
+                    </p>
+                  </div>
+                  
+                  {/* 완전한 상호작용이 가능한 버튼 컨테이너 */}
+                  <div className="flex gap-4 mt-6">
+                    <a href="https://monthly-tracker-lyart.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors uppercase tracking-wider">
+                      Live Site ↗
+                    </a>
+                    <a href="https://github.com/kimyvwol-beep/monthly-tracker" target="_blank" rel="noreferrer" className="text-sm font-bold border border-black px-6 py-3 hover:bg-black/10 transition-colors uppercase tracking-wider text-black">
+                      GitHub ↗
+                    </a>
+                  </div>
                 </div>
-                <div className="flex gap-4">
-                  <a href="https://monthly-tracker-lyart.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-white text-black px-6 py-3 hover:bg-gray-300 transition-colors uppercase tracking-wider relative z-50">
-                    Live Site ↗
-                  </a>
-                  <a href="https://github.com/kimyvwol-beep/monthly-tracker" target="_blank" rel="noreferrer" className="text-sm font-bold border border-white px-6 py-3 hover:bg-white/10 transition-colors uppercase tracking-wider relative z-50">
-                    GitHub ↗
-                  </a>
-                </div>
-              </div>
-              <div className="w-full md:w-2/3 flex flex-col justify-center relative z-10">
-                <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
-                  넷플릭스 구독료, 통신비, 가전제품 할부 등 매달 나가는 고정 지출을 한눈에 파악할 수 있는 핀테크 대시보드입니다. JavaScript의 Date 객체와 배열 메서드를 활용하여 실시간 할부 진행률 및 당월 총 청구 금액을 자동 계산합니다.
-                </p>
+
               </div>
             </div>
 
             {/* 프로젝트 2: TaskFlow */}
-            <div className="reveal-slice group border border-white/20 hover:border-white p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] relative overflow-hidden transition-all duration-300 cursor-default">
+            {/* 카드 뒤집기 회전 반경과 원근감을 주기 위한 3D 래퍼 컨테이너 */}
+            <div className="reveal-slice group [perspective:1000px] w-full h-[580px] sm:h-[480px] md:h-[400px] cursor-pointer">
               
-              <div className="absolute inset-0 bg-white text-black p-8 md:p-12 flex flex-col justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500 z-30">
-                <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Behind the Scenes</span>
-                <h4 className="text-2xl font-black mb-4">TaskFlow 개발 과정</h4>
-                <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
-                  리액트의 상태 구조와 데이터의 흐름, 컴포넌트 생명주기를 완벽하게 다져보기 위해 기획한 첫 칸반보드 프로젝트입니다. 외부 라이브러리에 의존하지 않고 HTML5 순정 Drag & Drop API를 직접 제어하는 과정에서 브라우저별 좌표 드롭 오작동 버그를 마주했고, 이벤트 커스텀 핸들러를 구축해 이를 극복했습니다. LocalStorage 연동을 통해 새로고침 후에도 일정이 유지되는 데이터 지속성까지 고려하며, 프론트엔드가 갖춰야 할 웹의 핵심 기본기를 꽉 채워 구현했습니다.
-                </p>
-              </div>
+              {/* 마우스 호버 시 Y축 기준 180도 회전 시키는 내부 카드 휠 */}
+              <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                
+                {/* [앞면] 원본 프로젝트 정보 형태 완벽 보존 */}
+                <div className="absolute inset-0 [backface-visibility:hidden] border border-white/20 p-8 md:p-12 flex flex-col md:flex-row gap-10 bg-[#111111] transition-colors duration-300 group-hover:border-white">
+                  <div className="w-full md:w-1/3">
+                    <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">TaskFlow</h3>
+                    <p className="text-gray-400 mb-8 font-medium">칸반보드 일정 관리 앱</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">Drag & Drop</span>
+                      <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">LocalStorage</span>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-2/3 flex flex-col justify-center">
+                    <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
+                      할 일, 진행 중, 완료 상태로 일정을 나누어 직관적으로 관리할 수 있는 애플리케이션입니다. 드래그 앤 드롭 API를 활용해 사용자 경험을 높이고, 브라우저 스토리지에 데이터를 안전하게 저장하여 데이터의 지속성을 보장합니다.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="w-full md:w-1/3 relative z-10">
-                <h3 className="text-3xl md:text-4xl font-black mb-2 tracking-tight">TaskFlow</h3>
-                <p className="text-gray-400 mb-8 font-medium">칸반보드 일정 관리 앱</p>
-                <div className="flex flex-wrap gap-2 mb-10">
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">React</span>
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">Drag & Drop</span>
-                  <span className="text-[10px] uppercase tracking-widest font-bold border border-white/30 px-2 py-1">LocalStorage</span>
+                {/* [뒷면] 호버 시 180도 뒤집혀 나타나는 개발 서사 레이어 및 실제 배치된 링크 영역 */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-white bg-white text-black p-8 md:p-12 flex flex-col justify-between">
+                  <div>
+                    <span className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2 block">Behind the Scenes</span>
+                    <h4 className="text-2xl font-black mb-4">TaskFlow 개발 과정</h4>
+                    <p className="text-sm md:text-base text-gray-800 leading-relaxed font-medium break-keep">
+                      리액트의 상태 구조와 데이터의 흐름, 컴포넌트 생명주기를 완벽하게 다져보기 위해 기획한 첫 칸반보드 프로젝트입니다. 외부 라이브러리에 의존하지 않고 HTML5 순정 Drag & Drop API를 직접 제어하는 과정에서 브라우저별 좌표 드롭 오작동 버그를 마주했고, 이벤트 커스텀 핸들러를 구축해 이를 극복했습니다. LocalStorage 연동을 통해 새로고침 후에도 일정이 유지되는 데이터 지속성까지 고려하며, 프론트엔드가 갖춰야 할 웹의 핵심 기본기를 꽉 채워 구현했습니다.
+                    </p>
+                  </div>
+                  
+                  {/* 완전한 상호작용이 가능한 버튼 컨테이너 */}
+                  <div className="flex gap-4 mt-6">
+                    <a href="https://taskflow-inky-beta.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors uppercase tracking-wider">
+                      Live Site ↗
+                    </a>
+                    <a href="https://github.com/kimyvwol-beep/taskflow" target="_blank" rel="noreferrer" className="text-sm font-bold border border-black px-6 py-3 hover:bg-black/10 transition-colors uppercase tracking-wider text-black">
+                      GitHub ↗
+                    </a>
+                  </div>
                 </div>
-                <div className="flex gap-4">
-                  <a href="https://taskflow-inky-beta.vercel.app/" target="_blank" rel="noreferrer" className="text-sm font-bold bg-white text-black px-6 py-3 hover:bg-gray-300 transition-colors uppercase tracking-wider relative z-50">
-                    Live Site ↗
-                  </a>
-                  <a href="https://github.com/kimyvwol-beep/taskflow" target="_blank" rel="noreferrer" className="text-sm font-bold border border-white px-6 py-3 hover:bg-white/10 transition-colors uppercase tracking-wider relative z-50">
-                    GitHub ↗
-                  </a>
-                </div>
-              </div>
-              <div className="w-full md:w-2/3 flex flex-col justify-center relative z-10">
-                <p className="text-gray-300 text-lg md:text-xl leading-relaxed break-keep font-light">
-                  할 일, 진행 중, 완료 상태로 일정을 나누어 직관적으로 관리할 수 있는 애플리케이션입니다. 드래그 앤 드롭 API를 활용해 사용자 경험을 높이고, 브라우저 스토리지에 데이터를 안전하게 저장하여 데이터의 지속성을 보장합니다.
-                </p>
+
               </div>
             </div>
 
