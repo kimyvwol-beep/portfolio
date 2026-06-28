@@ -78,7 +78,7 @@ export default function App() {
         }
       `}</style>
 
-      {/* 헤더 유지 */}
+      {/* 1. 헤더 */}
       <div className="w-full overflow-hidden border-b border-white/20 py-5 bg-white text-black flex">
         <div className="w-max flex animate-marquee">
           <div className="flex gap-12 px-6 text-4xl md:text-5xl font-black tracking-tighter">
@@ -92,7 +92,7 @@ export default function App() {
 
       <main className="max-w-6xl mx-auto px-6 py-16 md:py-24">
         
-        {/* 축소된 자기소개 섹션 */}
+        {/* 2. 자기소개 및 기본 정보 섹션 */}
         <div className="reveal-slice flex flex-col md:flex-row justify-between items-end gap-8 mb-20 border-b border-white/20 pb-16">
           <div>
             <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter">Frontend<br/>Developer.</h1>
@@ -102,17 +102,28 @@ export default function App() {
               <span>kimyvwol@naver.com</span>
             </div>
           </div>
-          <div className="max-w-md text-right">
-            <p className="text-2xl font-bold leading-tight tracking-tight break-keep mb-4">
-              "본질에 집중하고 프론트엔드의 기본기를 증명합니다."
-            </p>
-            <p className="text-gray-400 text-sm leading-relaxed break-keep font-light">
-              화려한 도구보다 어떤 환경에서도 흔들리지 않는 구조적인 코드 작성과 문제 해결 능력을 가장 중요하게 생각합니다.
-            </p>
+          
+          <div className="max-w-md text-right flex flex-col items-end gap-6">
+            <div>
+              <span className="text-xs font-bold tracking-widest text-gray-500 uppercase block mb-1">Birth</span>
+              <p className="text-xl md:text-2xl font-bold tracking-tight text-white">
+                2005. 09. 07
+              </p>
+            </div>
+            <div>
+              <span className="text-xs font-bold tracking-widest text-gray-500 uppercase block mb-3">Tech Stack</span>
+              <div className="flex flex-wrap justify-end gap-2">
+                <span className="text-xs uppercase tracking-widest font-bold border border-white/30 px-3 py-1.5 bg-white/5 text-white">React</span>
+                <span className="text-xs uppercase tracking-widest font-bold border border-white/30 px-3 py-1.5 bg-white/5 text-white">JavaScript</span>
+                <span className="text-xs uppercase tracking-widest font-bold border border-white/30 px-3 py-1.5 bg-white/5 text-white">HTML/CSS</span>
+                <span className="text-xs uppercase tracking-widest font-bold border border-white/30 px-3 py-1.5 bg-white/5 text-white">Tailwind CSS</span>
+                <span className="text-xs uppercase tracking-widest font-bold border border-white/30 px-3 py-1.5 bg-white/5 text-white">Git</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 프로젝트 섹션 */}
+        {/* 3. 프로젝트 섹션 */}
         <div>
           <h2 className="reveal-slice text-3xl md:text-5xl font-black mb-12 tracking-tighter uppercase flex items-center justify-between">
             Selected Work
